@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "../styles/statistics.scss";
 
 function FeedbackOptions({ options, onLeaveFeedback }) {
-  // console.log(options);
   return (
     <div className="btn__block">
       {options.map((el) => (
@@ -25,34 +24,3 @@ FeedbackOptions.propTypes = {
 };
 
 export default FeedbackOptions;
-
-// ====
-// +++++++++
-// class FeedbackOptions extends Component {
-//   static defaultProps = {
-//     options: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         name: PropTypes.string,
-//         value: PropTypes.number,
-//       })
-//     ),
-//   };
-//   render() {
-//     const { options } = this.props;
-//     return (
-//       <div className="btn__block">
-//         {options.map((el) => (
-//           <button
-//             type="button"
-//             className="btn__item"
-//             id={el}
-//             key={el}
-//             onClick={this.props.onLeaveFeedback}
-//           >
-//             {el}
-//           </button>
-//         ))}
-//       </div>
-//     );
-//   }
-// }
