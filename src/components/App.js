@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Section from "./Section";
 import Notification from "./Notification";
 import Statistics from "./Statistics/Statistiсs";
@@ -9,8 +9,6 @@ function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [percentage, setPercentage] = useState(0);
   //
   const handleIncrementVote = (e) => {
     const { textContent } = e.target;
@@ -28,12 +26,21 @@ function App() {
         return;
     }
   };
-  useEffect(() => {
-    setTotal(good + neutral + bad);
+  const countTotalFeedback = () => {
+    const total = good + neutral + bad;
+    return total;
+  };
+
+  const countPositiveFeedbackPercentage = () => {
     if (!good) {
-      return;
-    } else setPercentage(Math.round((good / total) * 100));
-  }, [good, neutral, bad, total, percentage]);
+      return 0;
+    }
+    const positivePercentage = Math.round((good / countTotalFeedback()) * 100);
+    return positivePercentage;
+  };
+
+  const total = countTotalFeedback();
+  const percentage = countPositiveFeedbackPercentage();
   return (
     <Container>
       <Section title="Please leave feedback">
